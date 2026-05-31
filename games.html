@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span><h1 id="display">0</h1></span>
+        <br> <br>
+        <button type="button" onclick="addnumber()">press here</button>
+        <button type="button" onclick="resetnumber()">reset</button>
+        <b id="bold">this is bold</b>
+        <button onclick="change_data()">change text</button>
+    </div>
+</body>
+<script>
+    let a = 100; 
+    console.log(a);
+    console.error("this is an error");
+    
+    function testing() {
+        console.log("this is func from.html");
+    }
+    testing();
+</script>
+<script>
+    function change_data() {
+        
+        let data = document.getElementById("bold").innerHTML;
+        console.log("before update:", data);
+        document.getElementById("bold").innerText = "this is changed data";
+    }  
+
+    function addnumber() {
+         let data = document.getElementById("display").innerText;
+         console.log(typeof(data));
+         let new_data = Number(data) + 1;
+         console.log(new_data);
+         console.log("press");
+         
+         document.getElementById("display").innerText = new_data;
+    }
+
+    function resetnumber() {
+         document.getElementById("display").innerText = 0;
+
+    }
+</script>
+</html>
