@@ -1,4 +1,6 @@
-#js
+#js---> JavaScript adds interactivity and dynamic behavior to web pages.
+
+
 
 a=60
 typeof(a)

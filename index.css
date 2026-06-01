@@ -1,0 +1,65 @@
+"""CSS (Cascading Style Sheets)"""
+"""CSS controls the visual presentation of HTML elements.""""
+/* Colors: named, hex, RGB, HSL */
+h1 {
+    color: blue;                    /* Named color */
+    color: #FF5733;                 /* Hexadecimal */
+    color: rgb(255, 87, 51);        /* RGB */
+    color: rgba(255, 87, 51, 0.5);  /* RGB with opacity */
+    color: hsl(11, 100%, 60%);      /* HSL */
+}
+
+/* Fonts */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;               /* px, em, rem, % */
+    font-weight: bold;              /* normal, bold, 100-900 */
+    font-style: italic;
+    text-align: center;             /* left, right, center, justify */
+    text-decoration: underline;     /* none, underline, overline */
+    line-height: 1.5;              /* Spacing between lines */
+}
+
+/* Spacing */
+div {
+    width: 300px;
+    height: 200px;
+    padding: 20px;                 /* Space inside element */
+    margin: 15px;                  /* Space outside element */
+    border: 2px solid black;       /* Border around element */
+}
+Box Model and Positioning
+The Box Model consists of:
+ Content - The actual content (text, images)
+ Padding - Space between content and border
+ Border - Surrounds padding
+ Margin - Space outside border
+
+
+1. Inline CSS (applied directly to element)
+<p style="color: red; font-size: 20px;">This is red text.</p>
+
+
+2. Internal CSS (within <style> tag in <head>)
+<head>
+    <style>
+        p {
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+
+3. External CSS (separate .css file)
+<!-- HTML -->
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+/* styles.css */
+p {
+    color: red;
+    font-size: 20px;
+}
