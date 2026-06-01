@@ -1,3 +1,5 @@
+#js
+
 a=60
 typeof(a)
 #a=60
