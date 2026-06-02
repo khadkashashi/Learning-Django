@@ -1,4 +1,4 @@
-#js---> JavaScript adds interactivity and dynamic behavior to web pages.
+//js---> JavaScript adds interactivity and dynamic behavior to web pages.
 
 
 
