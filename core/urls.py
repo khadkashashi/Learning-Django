@@ -17,9 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import home, json_home,show_company
+from product.views import product_list
+from ecommerce.views import ecommerce_sites
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',home),
     path('json/',json_home),
-    path('index/',show_company)
+    path('index/',show_company),
+    path('product-list/',product_list),
+    path('ecommerce-sites/', ecommerce_sites)
 ]
