@@ -7,7 +7,10 @@
 #python manage.py shell to write dyango code
 #Introduction to Django ORM (Object-RelationaMapping)
 ##What isORM (Object-Relational Mapping) is a technique that allows you to interact with your #database using Python code instead of writing raw #SQL queries. Django provides its own powerful ORM #that translates Python code into SQL statements #automatically.
-
+# Product.objects.values('name','address')---> to see data post in db
+#Product.object.filter(address='addressname').delete()
+#Retrieving All Objects-----> #Product.objects.all()
+#get_or_create() - Avoid Duplicates---> Category.objects.get_or_create(------)
 from django.db import models
 # Create your models here.
 class Product(models.Model):

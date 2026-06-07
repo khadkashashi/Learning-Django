@@ -87,13 +87,14 @@
 <h1>{{Product}}</h1>
 
 <div class="product-container">
+    {% for i in company %}
 
     <div class="product-card">
         <img src="https://via.placeholder.com/300x220" alt="Product">
         <div class="product-info">
-            <h3>Wireless Headphone</h3>
-            <p>High quality sound with noise cancellation.</p>
-            <div class="price">$49.99</div>
+            <h3 class= 'product-tittle'>{{i.name}} </h3>
+            <p class='price>{{i.address}}</p>
+            <p class="description">{{i.phone}}</p>
             <button>Add to Cart</button>
         </div>
     </div>
