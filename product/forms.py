@@ -3,5 +3,7 @@ from product.models import Product
 class ProductForm(forms.ModelForm):
     class Meta:
         model= Product
-        fields=all()
+        fields='__all__'
+        #fields=['name','address']
+        #exclude=['name']---> show a;; except name
 
