@@ -23,7 +23,45 @@ def product_list(request):
 
 def product_create(request):
     form = ProductForm()
+    if request.method =="POST":
+        data = request.POST
+        form = ProductForm(data=data)
+        if form.is_valid():
+            form.save()
+            return redirect('/product-list')
+
     context = {
         "form":form
     }
+
     return render(request,'product/create2.html',context)
+
+
+def product_update(request,id):
+    product = Product.objects.get(id=id)
+    form = ProductForm(instance=product)
+    if request.method == "POST":
+        data =request.POST
+        form = ProductForm(instance=product,data=data)
+        if form.is_valid():
+            form.save()
+            return redirect('/product-list')
+
+    context = {
+        "form":form
+    }
+
+    return render(request,'product/update.html',context)
+
+def product_delete(request, id):
+    product = Product.objects.get(id=id)
+
+    if request.method == "POST":
+        product.delete()
+        return redirect('/product-list')
+
+    context = {
+        "product": product
+    }
+
+    return render(request, 'product/delete.html', context)

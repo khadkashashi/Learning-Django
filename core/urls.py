@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import home, json_home,show_company
-from product.views import product_list,product_create
+from product.views import product_list,product_create,product_update,product_delete
 from ecommerce.views import ecommerce_sites
 
 urlpatterns = [
@@ -28,4 +28,6 @@ urlpatterns = [
     path('product-list/',product_list),
     path('product-create/',product_create),
     path('ecommerce-sites/', ecommerce_sites),
+    path('product-update/<int:id>', product_update),
+    path('product-delete/<int:id>', product_delete),
 ]
