@@ -2,20 +2,6 @@ from django.db import models
 
 
 
-'''
-
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    date_of_birth DATE,
-    email VARCHAR(100),
-    phone VARCHAR(20),
-    address TEXT,
-    hire_date DATE,
-    department_id INT,
-    qualification VARCHAR(100),
-    salary DECIMAL(10,2),
-
-'''
 # Create your models here.
 class Teacher(models.Model):
     full_name = models.CharField(max_length=80)
@@ -33,8 +19,11 @@ class Teacher(models.Model):
     def __str__(self):
         return self.full_name
 
+
 class Student(models.Model):
-    class_teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True,related_name="teacher_student")
+    class_teacher = models.ForeignKey(
+        Teacher, on_delete=models.SET_NULL, null=True, related_name="teacher_student"
+    )
     full_name = models.CharField(max_length=80)
     dob = models.DateField()
     email = models.EmailField()
@@ -46,4 +35,32 @@ class Student(models.Model):
 
     def __str__(self):
         return self.full_name
-    
+
+
+class Subject(models.Model):
+    name = models.CharField(max_length=10)
+    short_name = models.CharField(max_length=5, null=True, blank=True)
+
+    class Meta:
+        db_table = "subject"
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Grade(models.Model):
+    class_teacher = models.OneToOneField(Teacher, on_delete=models.CASCADE)
+    subject = models.ManyToManyField(Subject)
+    name = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True,
+        verbose_name="Grade Name",
+        help_text="enter name is numberic",
+    )
+
+    class Meta:
+        db_table = "grade"
+
+    def __str__(self):
+        return f"{self.name}"

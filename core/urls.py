@@ -19,14 +19,13 @@ from django.urls import include, path
 from home.views import home, json_home,show_company
 from product.views import product_list, product_create, product_update, product_delete
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home),
     path('json/',json_home),
     path('company/',show_company),
     path('product/', include('product.urls')),
-    path('student/', include('school.urls')),
-   
+    path('school/', include('school.urls')),
+
 
 ]

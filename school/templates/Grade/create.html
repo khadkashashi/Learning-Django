@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Grade</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Create Grade</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <!-- Grade Name -->
+                            <p>
+                                <label>Grade Name</label><br>
+                                {{ form.name }}
+                            </p>
+
+                            <!-- Class Teacher -->
+                            <p>
+                                <label>Class Teacher</label><br>
+                                {{ form.class_teacher }}
+                            </p>
+
+                            <!-- Subjects (ManyToMany - needs loop) -->
+                            <p>
+                                <label>Subjects</label><br>
+                                <div class="border rounded p-2 bg-white">
+                                    {% for checkbox in form.subject %}
+                                        <div class="form-check">
+                                            {{ checkbox.tag }}
+                                            <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                                                {{ checkbox.choice_label }}
+                                            </label>
+                                        </div>
+                                    {% empty %}
+                                        <p class="text-muted mb-0">No subjects available</p>
+                                    {% endfor %}
+                                </div>
+                            </p>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
