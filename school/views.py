@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from school.models import Grade, Student, Subject
-from school.forms import StudentForm
+from school.forms import StudentForm, SubjectForm
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Create your views here.
 def student_list(request):
     data = Student.objects.all()
@@ -55,3 +56,19 @@ class SubjectView(ListView):
     model = Subject
     template_name = "subject/index.html"
     context_object_name = "subject"
+
+
+class SubjectCreateView(CreateView):
+    model = Subject
+    # fields = '__all__'
+    form_class = SubjectForm
+    template_name = "subject/create.html"
+    success_url = "/school/subject/list"
+
+
+class SubjectUpdateView(UpdateView):
+    model = Subject
+    # fields = '__all__'
+    form_class = SubjectForm
+    template_name = "subject/update.html"
+    success_url = "/school/subject/list"
