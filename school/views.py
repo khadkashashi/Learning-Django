@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from school.models import Student,Grade
-from school.forms import StudentForm,GradeForm
-
+from school.models import Grade, Student, Subject
+from school.forms import StudentForm
+from django.views.generic.list import ListView
 # Create your views here.
 def student_list(request):
     data = Student.objects.all()
@@ -18,11 +18,11 @@ def student_create(request):
         form = StudentForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/school/student/list')
+            return redirect('school/student/list')
     context = {
         "form":form
     }
-    return render(request, '/school/student/create.html', context)
+    return render(request, 'student/create.html', context)
 
 
 def student_update(request, id):
@@ -36,12 +36,9 @@ def student_update(request, id):
     context = {
         "form":form
     }
-    return render(request, '/school/student/update.html', context)
+    return render(request, 'student/create.html', context)
 
-def student_delete(request, id):
-    student = Student.objects.get(id=id)  
-    student.delete()
-    return redirect('/school/student/list')
+
 
 def grade_list(request):
     grade = Grade.objects.all()
@@ -50,14 +47,11 @@ def grade_list(request):
     }
     return render(request, 'grade/index.html',context)
 
-def grade_create(request):
-    form = GradeForm()
-    if request.method == "POST":
-        form = GradeForm(data=request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.save()
-            form.save_m2m()
-            return redirect('grade-list')
-    context = {"form": form}
-    return render(request, 'grade/create.html', context)
+
+
+# Subject class based view
+
+class SubjectView(ListView):
+    model = Subject
+    template_name = "subject/index.html"
+    context_object_name = "subject"
