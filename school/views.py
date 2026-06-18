@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from school.models import Grade, Student, Subject
-from school.forms import StudentForm, SubjectForm
+from school.forms import StudentForm, SubjectForm, GradeForm
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Create your views here.
@@ -37,7 +37,7 @@ def student_update(request, id):
     context = {
         "form":form
     }
-    return render(request, 'student/create.html', context)
+    return render(request, 'student/update.html', context)
 
 
 
@@ -48,7 +48,30 @@ def grade_list(request):
     }
     return render(request, 'grade/index.html',context)
 
+def grade_create(request):
+    form = GradeForm()
+    if request.method == "POST":
+        form = GradeForm(data=request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            form.save_m2m()
+            return redirect('grade-list')
+    context = {"form": form}
+    return render(request, 'grade/create.html', context)
 
+def grade_update(request, id):
+    grade = Grade.objects.get(id=id)
+    form = GradeForm(instance=grade)         
+    if request.method == "POST":
+        form = GradeForm(instance=grade, data=request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            form.save_m2m()                    
+            return redirect('grade-list')
+    context = {"form": form}
+    return render(request, 'grade/update.html', context)
 
 # Subject class based view
 
@@ -72,3 +95,4 @@ class SubjectUpdateView(UpdateView):
     form_class = SubjectForm
     template_name = "subject/update.html"
     success_url = "/school/subject/list"
+
