@@ -8,3 +8,7 @@ class RegisterFrom(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username','password','email','first_name','last_name']
+
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter username"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':"Enter password"}))
