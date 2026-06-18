@@ -19,6 +19,7 @@ def register(request):
 
 
 def user_login(request):
+    params = request.GET
     form = LoginForm()
     if request.method == "POST":
         form = LoginForm(data=request.POST)
@@ -32,6 +33,8 @@ def user_login(request):
                 if not user.is_staff:
                     return HttpResponse("you are not the staff")
                 login(request, user)
+                if params.get('next'):
+                    return redirect(params.get('next'))
                 return redirect('/admin')
 
 
