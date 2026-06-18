@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from home.views import home, json_home,show_company
 from product.views import product_list, product_create, product_update, product_delete
+from user.views import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,8 @@ urlpatterns = [
     path('company/',show_company),
     path('product/', include('product.urls')),
     path('school/', include('school.urls')),
+    path('register',register)
+    
 
 
 ]
